@@ -5,31 +5,37 @@ let listGroup = document.querySelector(".list-group");
 let currentDay = document.querySelector("#today");
 let forecastEl = document.querySelector("#forecast");
 
+for ( var i = 0; i < localStorage.length; i++ ) {
+    let city = localStorage.getItem(localStorage.key(i))
+    console.log(city);
+    let createButton = document.createElement("BUTTON");
+    createButton.textContent = city;
+    createButton.className = "btn btn-secondary"
+    history.prepend(createButton);
+  }
+
 
 searchBtn.addEventListener("click", function(){
     event.preventDefault()
+    forecastEl.innerHTML = "";
     let aaa = searchInput.value;
     myFunction(aaa)
     searchInput.value="";
 })
 
 
-
-
-
 listGroup.addEventListener("click", function(){
     event.preventDefault()
+    forecastEl.innerHTML = "";
     let aaa = event.target.textContent
     myFunction(aaa)
 })
 
 
-// Need to add in to local storage!!!!
-
-
-
 function myFunction(cityToSearchFor) {
+
     let city = cityToSearchFor;
+    localStorage.setItem(city, city);
     let createButton = document.createElement("BUTTON");
     createButton.textContent = city;
     createButton.className = "btn btn-secondary"
